@@ -1,0 +1,42 @@
+group 'xd'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'war'
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://repo.spring.io/libs-snapshot'
+    }
+}
+
+dependencies {
+    compile ('junit:junit:4.11'
+            ,'org.hibernate:hibernate-core:5.2.4.Final'
+            ,'org.springframework.security:spring-security-web:4.2.1.BUILD-SNAPSHOT'
+            ,'org.apache.struts:struts2-core:2.5.5',
+            'org.apache.commons:commons-lang3:3.5',
+            [// https://mvnrepository.com/artifact/com.google.zxing/core
+             group: 'com.google.zxing', name: 'core', version: '3.3.0'
+            ],
+            [group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'],
+            [group: 'org.apache.struts', name: 'struts2-json-plugin', version: '2.5.5'],
+            [group: 'org.apache.struts', name: 'struts2-convention-plugin', version: '2.5.5'],
+            [group: 'org.jdom', name: 'jdom2', version: '2.0.6'],
+            [// https://mvnrepository.com/artifact/mysql/mysql-connector-java
+             group: 'mysql', name: 'mysql-connector-java', version: '6.0.5'
+            ],
+            [// https://mvnrepository.com/artifact/org.springframework/spring-orm
+             group: 'org.springframework', name: 'spring-orm', version: '5.0.0.M3'
+            ],
+            [// https://mvnrepository.com/artifact/commons-dbcp/commons-dbcp
+             group: 'commons-dbcp', name: 'commons-dbcp', version: '1.4'
+            ],
+            [// https://mvnrepository.com/artifact/org.apache.mina/mina-core
+             group: 'org.apache.mina', name: 'mina-core', version: '3.0.0-M2'
+            ],
+            [// https://mvnrepository.com/artifact/org.apache.mina/mina-codec
+             group: 'org.apache.mina', name: 'mina-codec', version: '3.0.0-M2'
+            ]
+    )
+}

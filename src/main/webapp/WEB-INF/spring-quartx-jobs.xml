@@ -1,0 +1,37 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans.xsd
+                     http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <task:executor id="quartzExecutor" pool-size="1"/>
+    <!--quartz jobs-->
+    <bean id="baseJobDetail" abstract="true"
+          class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+        <property name="targetObject" ref="baseJob"/>
+        <property name="targetMethod" value="execute"/>
+        <property name="concurrent" value="false"/>
+    </bean>
+
+
+    <bean id="memoryCheckDoTime"
+          class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail">
+            <bean parent="baseJobDetail">
+                <property name="targetObject" ref="memoryJob"/>
+            </bean>
+        </property>
+        <property name="cronExpression" value="0/10 * * * * ?"/>
+    </bean>
+
+    <bean id="startQuertz" lazy-init="false" autowire="no"
+          class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="taskExecutor" ref="quartzExecutor"/>
+        <property name="triggers">
+            <list>
+                <!--<ref bean="memoryCheckDoTime"/>-->
+            </list>
+        </property>
+    </bean>
+</beans>

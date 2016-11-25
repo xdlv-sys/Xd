@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans.xsd 
+                     http://www.springframework.org/schema/tx 
+                     http://www.springframework.org/schema/tx/spring-tx.xsd 
+                     http://www.springframework.org/schema/aop 
+                     http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd">
+
+    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="fileEncoding" value="UTF-8"/>
+        <property name="locations">
+            <list>
+                <value>classpath:/jdbc.properties</value>
+                <value>classpath:/i18n.properties</value>
+                <value>classpath:/app.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="xd">
+        <context:exclude-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+
+    <bean id="httpClientConnectionManager" class="org.apache.http.impl.conn.PoolingHttpClientConnectionManager">
+        <property name="maxTotal" value="${http_client_max_connection_total}"/>
+        <property name="defaultMaxPerRoute" value="${http_client_max_connection_per_host}"/>
+    </bean>
+
+    <bean class="org.springframework.jmx.export.annotation.AnnotationMBeanExporter"/>
+
+    <!-- 开启@AspectJ AOP代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 任务调度器 -->
+    <task:scheduler id="scheduler" pool-size="${scheduler_size}"/>
+    <!-- 任务执行器 -->
+    <task:executor id="executor" pool-size="${scheduler_thread_pool_size}"/>
+    <!--开启注解调度支持 @Async @Scheduled-->
+    <task:annotation-driven executor="executor" scheduler="scheduler" proxy-target-class="true"/>
+
+    <import resource="spring-db.xml"/>
+    <!--<import resource="spring-quartx-jobs.xml"/>-->
+    <!--<import resource="spring-apache-mina.xml"/>-->
+    <!--<import resource="spring-apache-derby.xml"/>-->
+    <!--<import resource="spring-mybatis.xml"/>-->
+
+</beans>

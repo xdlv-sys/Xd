@@ -1,0 +1,68 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                     http://www.springframework.org/schema/beans/spring-beans.xsd
+                     http://www.springframework.org/schema/tx
+                     http://www.springframework.org/schema/tx/spring-tx.xsd
+                     http://www.springframework.org/schema/aop
+                     http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="tlvCodecFilter" class="org.apache.mina.filter.codec.ProtocolCodecFilter">
+        <constructor-arg>
+            <bean class="xd.fw.mina.tlv.TLVCodecFactory">
+                <constructor-arg>
+                    <value>${mina_encoding}</value>
+                </constructor-arg>
+            </bean>
+        </constructor-arg>
+    </bean>
+    <bean id="loggingFilter" class="xd.fw.mina.tlv.BufferLoggingFilter">
+        <property name="messageSentLogLevel" value="DEBUG"/>
+        <property name="sessionIdleLogLevel" value="DEBUG"/>
+    </bean>
+
+    <bean id="minaExecutor" class="org.apache.mina.filter.executor.ExecutorFilter">
+        <!-- max size-->
+        <constructor-arg index="0" value="0"/>
+        <constructor-arg index="1" value="${mina_pool_size}"/>
+        <constructor-arg index="2" value="5"/>
+        <constructor-arg index="3" value="SECONDS"/>
+
+    </bean>
+    <bean id="filterChainBuilder" class="org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder">
+        <property name="filters">
+            <map>
+                <entry key="loggingFilter" value-ref="loggingFilter"/>
+                <entry key="codecFilter" value-ref="tlvCodecFilter"/>
+                <entry key="threadPool" value-ref="minaExecutor"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.beans.factory.config.CustomEditorConfigurer">
+        <property name="customEditors">
+            <map>
+                <entry key="java.net.SocketAddress"
+                       value="org.apache.mina.integration.beans.InetSocketAddressEditor"/>
+            </map>
+        </property>
+    </bean>
+
+    <bean id="sessionConfig" factory-bean="ioAcceptor" factory-method="getSessionConfig">
+        <property name="readerIdleTime" value="10"/>
+        <property name="minReadBufferSize" value="512"/>
+        <property name="maxReadBufferSize" value="10240"/>
+    </bean>
+
+    <!-- The IoAcceptor which binds to port 18080 -->
+    <bean id="ioAcceptor" class="xd.fw.mina.tlv.MinaWrapper"
+          init-method="init" destroy-method="destroy">
+        <property name="defaultLocalAddress" value="${mina_port}"/>
+        <property name="reuseAddress" value="true"/>
+
+        <property name="handler" ref="tlvHandler"/>
+        <property name="filterChainBuilder" ref="filterChainBuilder"/>
+    </bean>
+</beans>

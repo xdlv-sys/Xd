@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="20 seconds">
+
+    <property name="DEV_HOME" value="${catalina.base}/logs" />
+    <property name="FORMAT" value="%d{yyyy-MM-dd HH:mm:ss} [%logger{0}] %-5level %msg%n"/>
+    <property name="MAX_HISTROY" value="5"/>
+    <property name="MAX_SIZE" value="1MB"/>
+
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>debug</level>
+        </filter>
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                ${FORMAT}
+            </Pattern>
+        </layout>
+    </appender>
+
+    <appender name="FILE-AUDIT"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${DEV_HOME}/upgrade.log</file>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <Pattern>
+                ${FORMAT}
+            </Pattern>
+        </encoder>
+
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- rollover daily -->
+            <fileNamePattern>${DEV_HOME}/archived/upgrade.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+            <maxHistory>${MAX_HISTROY}</maxHistory>
+            <timeBasedFileNamingAndTriggeringPolicy
+                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>${MAX_SIZE}</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+
+    </appender>
+
+    <root level="info">
+        <appender-ref ref="FILE-AUDIT" />
+    </root>
+
+</configuration>
