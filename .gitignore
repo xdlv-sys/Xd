@@ -1,0 +1,44 @@
+# Created by .ignore support plugin (hsz.mobi)
+### Example user template template
+### Example user template
+
+# IntelliJ project files
+.idea
+out
+gen### Gradle template
+.gradle
+build/
+
+# Ignore Gradle GUI config
+gradle-app.setting
+
+# Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
+!gradle-wrapper.jar
+
+# Cache of project
+.gradletasknamecache
+
+# # Work around https://youtrack.jetbrains.com/issue/IDEA-116898
+# gradle/wrapper/gradle-wrapper.properties
+
+.gitignore
+.idea/encodings.xml
+.idea/libraries/Gradle__commons_codec_commons_codec_1_9.xml
+.idea/libraries/Gradle__javax_servlet_javax_servlet_api_3_0_1.xml
+.idea/libraries/Gradle__log4j_log4j_1_2_8.xml
+.idea/libraries/Gradle__org_apache_derby_derbytools_10_13_1_1.xml
+.idea/libraries/Gradle__org_apache_httpcomponents_httpclient_4_5_2.xml
+.idea/libraries/Gradle__org_apache_httpcomponents_httpcore_4_4_4.xml
+.idea/libraries/Gradle__org_apache_httpcomponents_httpmime_4_5_2.xml
+.idea/libraries/Gradle__org_apache_mina_mina_core_2_0_13.xml
+.idea/libraries/Gradle__org_apache_poi_openxml4j_1_0_beta.xml
+.idea/libraries/Gradle__org_aspectj_aspectjrt_1_8_9.xml
+.idea/libraries/Gradle__org_aspectj_aspectjtools_1_8_9.xml
+.idea/libraries/Gradle__xml_apis_xml_apis_1_0_b2.xml
+.idea/vcs.xml
+out/artifacts/xd/exploded/xd-1.0-SNAPSHOT.war/WEB-INF/
+out/artifacts/xd/exploded/xd-1.0-SNAPSHOT.war/www/
+src/main/java/xd/fw/mkup/
+src/main/resources/
+src/main/webapp/www/
+src/test/

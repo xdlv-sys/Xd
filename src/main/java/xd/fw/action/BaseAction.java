@@ -7,13 +7,11 @@ import org.apache.struts2.convention.annotation.Namespace;
 import org.apache.struts2.convention.annotation.ParentPackage;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.convention.annotation.Results;
-
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.input.SAXBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import xd.fw.FwUtil;
@@ -198,8 +196,8 @@ public abstract class BaseAction extends ActionSupport implements IConst{
     }
 
     public static void main(String[] args) throws IllegalAccessException, InvocationTargetException {
-        ReceiveXmlEntity msg = new ReceiveXmlEntity();
-        BeanUtils.setProperty(msg, "toUserName", "23");
-        System.out.println(msg.getToUserName());
+        //ReceiveXmlEntity msg = new ReceiveXmlEntity();
+        //BeanUtils.setProperty(msg, "toUserName", "23");
+        //System.out.println(msg.getToUserName());
     }
 }

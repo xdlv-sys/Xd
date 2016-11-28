@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" "http://struts.apache.org/dtds/struts-2.3.dtd">
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN" "http://struts.apache.org/dtds/struts-2.5.dtd">
 
 <struts>
 
@@ -21,7 +21,8 @@
     <constant name="struts.convention.action.name.lowercase" value="true"/>
 	<constant name="struts.multipart.maxSize" value="9000000"/>
 
-	<package name="xapp-default" namespace="" extends="json-default">
+	<package name="xapp-default" namespace="/" extends="json-default">
+        <global-allowed-methods>regex:.*</global-allowed-methods>
 		<global-exception-mappings>
 			<exception-mapping exception="java.lang.Exception" result="error"/>
 		</global-exception-mappings>

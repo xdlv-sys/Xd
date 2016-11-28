@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: org.apache.struts:struts2-config-browser-plugin:2.5.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.struts/struts2-config-browser-plugin/2.5.5/aac6590b48d371673c313ff23214d4c3ef2fbefa/struts2-config-browser-plugin-2.5.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.apache.struts/struts2-config-browser-plugin/2.5.5/26a7841410e9dfb5e6a4e6ae06177a2f20795505/struts2-config-browser-plugin-2.5.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

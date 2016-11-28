@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: org.springframework.security:spring-security-web:4.2.1.BUILD-SNAPSHOT">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/4.2.1.BUILD-SNAPSHOT/78005c9c3b0520e2bbc110e58f29c38605d1c15a/spring-security-web-4.2.1.BUILD-SNAPSHOT.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/4.2.1.BUILD-SNAPSHOT/2ad6e50e3b7cf47f745d3eb1a15516034861a3b9/spring-security-web-4.2.1.BUILD-SNAPSHOT.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/4.2.1.BUILD-SNAPSHOT/be7dd75f05383096e3b07bccd4d7d820f99a787f/spring-security-web-4.2.1.BUILD-SNAPSHOT-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.springframework.security/spring-security-web/4.2.1.BUILD-SNAPSHOT/a61bb27c3e6c272741923d3791ab0d355dafef6a/spring-security-web-4.2.1.BUILD-SNAPSHOT-sources.jar!/" />
     </SOURCES>
   </library>
 </component>
